@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="static/css/styles2.css">
+  <title>Pixel Calendar</title>
+</head>
+<body>
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <h1 class="pixel-title">Birthday Calendar</h1>
+      <p class="pixel-subtitle">All days of the month at a glance</p>
+    </div>
+
+    <div class="calendar-card">
+      <!-- Navigation Header -->
+      <div class="nav-header">
+        <button id="prevMonth" class="nav-button">◀</button>
+        <div class="calendar-name">
+          <p class="name-text" id="selectedMonthName">Month</p>
+        </div>
+        <button id="nextMonth" class="nav-button">▶</button>
+      </div>
+      <!--Botões-->
+      <div class="display">
+        <button id="addBirthday"onclick="mostrarFormulario()">Add your friend's birthday</button>
+        <form id="birthdayForm" action="/add_friends/" method="post">
+          <label for="fname">Name:</label>
+            <input type="text" name="fname">
+            <label for="bday">Date of birth:</label>
+            <input type="date" name="bday"/>
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+
+      <!-- Day Names Header -->
+      <div class="day-names">
+        <!-- <div class="week-label">Wk</div> -->
+        <div class="day-name">Sun</div>
+        <div class="day-name">Mon</div>
+        <div class="day-name">Tue</div>
+        <div class="day-name">Wed</div>
+        <div class="day-name">Thu</div>
+        <div class="day-name">Fri</div>
+        <div class="day-name">Sat</div>
+      </div>
+
+      <!-- Calendar Grid -->
+      <div id="calendarGridContainer"></div>
+
+      <!-- Footer Info -->
+      <div class="calendar-footer">
+        <p id="footerInfo">December 2025 • 31 days</p>
+        <div class="month-stats" id="monthStats"></div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="static/js/calendario.js"></script>
+</html>
