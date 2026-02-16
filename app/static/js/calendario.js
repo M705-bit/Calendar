@@ -8,7 +8,6 @@ const monthNames = [
   'July', 'August', 'September', 'October', 'November', 'December'
 ];
 
-
 //função para atualizar o display do mês selecionado no header do calendário
 function updateSelectedMonthDisplay() {
   document.getElementById('selectedMonthName').textContent = 
@@ -19,11 +18,13 @@ function updateSelectedMonthDisplay() {
 function mostrarFormulario() {
       form.style.display = 'block';
       document.getElementById('addBirthday').style.display = 'none';
+      document.getElementById('showBirthdays').style.display = 'none';
     }
 //função para esconder o formulário de adicionar aniversário e mostrar o botão "Add Birthday"
 function esconderFormulario() {
         form.style.display = 'none';
         document.getElementById('addBirthday').style.display = 'block';
+        document.getElementById('showBirthdays').style.display = 'block';
       }
 //adiciona um event listener para o envio do formulário de adicionar aniversário
 form.addEventListener('submit', async (e) => {
@@ -80,16 +81,14 @@ async function addBirthdayToCalandar() {
 	});
   if (response.ok) {
       const data = await response.json();
-      console.log("Friends data:", data);
-      //data é uma lista de dicionários, onde cada dicionário representa um amigo com suas informações (nome e aniversário)
+      //console.log("Friends data:", data);
 
       data.forEach(friend => {
         const birthday = new Date(friend.birthday);
         const month = birthday.getMonth();
         //como no javascript os meses vão de 0 - 11 e os dias de 0 - 30, eu adicionei 1 por que no meu código os dias vão de 1 - 31, então para comparar com os botões do calendário eu preciso adicionar 1
         const day = birthday.getDate()+1;
-        //console.log(`birthday:${birthday} month:${month} day:${day}`);
-        //console.log(`Processing friend: ${friend.name}, Birthday: ${friend.birthday}, Month: ${month}, Day: ${day}`);
+       
         const buttons = document.querySelectorAll('.calendar-day');
         buttons.forEach(button => {
           if (Number(button.dataset.day) === day && currentDate.getMonth() === month) {
@@ -127,6 +126,10 @@ function renderCalendar(){
         dayCell.setAttribute('data-day', dia);
 
         if (dia === dia_atual.getDate() && month === mes && year === ano) {
+            //console.log("Highlighting today's date:", dia, month, year);
+            //console.log("Current date object:", dia_atual);
+            //muda a cor do dia atual para vermelho, usando a classe CSS .today
+
             dayCell.classList.add('today');
         }
 
@@ -166,20 +169,22 @@ async function nextBirthday() {
     });
     if (response.ok) {
       const data = await response.json();
-      console.log("Friends data for next birthday:", data);
       data.forEach(friend => {
         const birthday = new Date(friend.birthday);
-        const today = new Date();
-        birthday.setFullYear(today.getFullYear());
-        if (birthday < today) {
-          birthday.setFullYear(today.getFullYear() + 1);
+        const hoje = new Date();
+        birthday.setFullYear(hoje.getFullYear());
+        if (birthday < hoje) {
+          birthday.setFullYear(hoje.getFullYear() + 1);
         }
         friend.nextBirthday = birthday; 
       });
       data.sort((a, b) => a.nextBirthday - b.nextBirthday);
       const nextFriend = data[0]; 
       if (nextFriend) {
-        alert(`Next birthday: ${nextFriend.name} on ${nextFriend.nextBirthday.toLocaleDateString()}`);
+        birthday = new Date(nextFriend.nextBirthday);
+        const month = birthday.getMonth() + 1;
+        const day = birthday.getDate()+1;
+        document.getElementById("showBirthdays").innerHTML = "Next birthday: " + nextFriend.name + " - " + day + "/" + month;
 }
       
     } else {

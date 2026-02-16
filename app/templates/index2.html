@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="static/css/styles2.css">
-  <title>Pixel Calendar</title>
+  <title>Birthday Calendar</title>
 </head>
 <body>
   <div class="calendar-container">
     <div class="calendar-header">
       <h1 class="pixel-title">Birthday Calendar</h1>
-      <p class="pixel-subtitle">All days of the month at a glance</p>
+      <p class="pixel-subtitle">All your friends' birthdays at a glance</p>
     </div>
 
     <div class="calendar-card">
@@ -25,6 +25,7 @@
       <!--Botões-->
       <div class="display">
         <button id="addBirthday"onclick="mostrarFormulario()">Add your friend's birthday</button>
+        <p id="showBirthdays">Show birthdays</p>
         <form id="birthdayForm" action="/add_friends/" method="post">
           <label for="fname">Name:</label>
             <input type="text" name="fname">
