@@ -3,7 +3,8 @@
 A full-stack web application for tracking your friends' birthdays. Built with a **FastAPI** backend, **SQLite** database, and a pixel-art styled frontend using vanilla JavaScript.
 
 ---
-
+![alt text](image.png)
+---
 ## Table of Contents
 
 - [Overview](#overview)
