@@ -185,6 +185,7 @@ async function nextBirthday() {
         const month = birthday.getMonth() + 1;
         const day = birthday.getDate()+1;
         document.getElementById("showBirthdays").innerHTML = "Next birthday: " + nextFriend.name + " - " + day + "/" + month;
+        console.log("Next birthday: " + nextFriend.name + " - " + day + "/" + month); 
 }
       
     } else {

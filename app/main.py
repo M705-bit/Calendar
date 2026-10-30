@@ -17,7 +17,7 @@ def on_startup():
 
 @app.get("/")
 async def read_item(request: Request):
-    return templates.TemplateResponse("index2.html", {"request": request})
+    return templates.TemplateResponse(request, "index2.html")
 
 # endpoint para buscar tds os os amigos e suas datas de aniversário e adicionar ao frontend
 @app.get("/nextbirthday")
@@ -33,12 +33,14 @@ def get_friends():
     return resposta 
 @app.get("/friends")
 def get_friends():
+    print("tentando pegar friends")
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
     res = cur.execute("SELECT * FROM friend")
     colunas = [desc[0] for desc in res.description]
     linhas = res.fetchall()
     resposta = [dict(zip(colunas, linha)) for linha in linhas]
+    print(f"resposta: {resposta}")
     conn.close()
     #vai retornar uma lista de  dicionarios
     return  resposta
