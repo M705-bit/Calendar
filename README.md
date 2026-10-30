@@ -186,45 +186,61 @@ Adds a new friend and their birthday.
 
 ## Getting Started
 
-### Prerequisites
+### Option A — Docker (recommended, no Python required)
+
+> Requires [Docker Desktop](https://www.docker.com/products/docker-desktop/) (free for personal use) or [Rancher Desktop](https://rancherdesktop.io/) (free for all).
+
+```bash
+git clone <repository-url>
+cd Calendar
+docker compose up --build
+```
+
+Open your browser at `http://localhost:8000`.
+
+---
+
+### Option B — Local Python
+
+#### Prerequisites
 
 - Python 3.10+
 
-### 1. Clone the repository
+#### 1. Clone the repository
 
 ```bash
 git clone <repository-url>
 cd Calendar
 ```
 
-### 2. Create and activate a virtual environment
+#### 2. Create and activate a virtual environment
 
 ```bash
 python -m venv .venv
 
-# Windows
-.venv\Scripts\activate
+# Windows (Git Bash)
+source .venv/Scripts/activate
 
 # Linux / macOS
 source .venv/bin/activate
 ```
 
-### 3. Install dependencies
+#### 3. Install dependencies
 
 ```bash
-pip install -r requirements.txt
+python -m pip install -r app/requirements.txt
 ```
 
-### 4. Run the development server
+#### 4. Run the development server
 
 ```bash
 cd app
-uvicorn main:app --reload
+python -m uvicorn main:app --reload
 ```
 
 Open your browser at `http://127.0.0.1:8000`.
 
-### 5. (Optional) Inspect the database directly
+#### 5. (Optional) Inspect the database directly
 
 ```bash
 cd app
