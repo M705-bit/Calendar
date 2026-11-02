@@ -250,10 +250,3 @@ python teste.py
 This prints all rows currently stored in the `friend` table.
 
 ---
-
-## Known Issues / Limitations
-
-- **Duplicate names only** — two friends with the same name cannot be stored, even if their birthdays differ.
-- **Birthday day offset** — there is a known `+1` offset in `addBirthdayToCalandar()` (`const day = birthday.getDate() + 1`) to compensate for how SQLite stores dates vs. how JavaScript parses them. This may cause incorrect highlighting in edge cases (e.g. the 1st of a month).
-- **No delete or edit** — there is currently no UI or endpoint to remove or update a birthday.
-- **Single page** — all friends across all months are fetched on every calendar render; performance will degrade with a very large number of entries.
